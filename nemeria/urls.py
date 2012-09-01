@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     
+    url(r'^$','nemeriatools.views.home'),
     url(r'^pseudo/(?P<joueur_id>\d+)/$','nemeriatools.views.pseudo_detail'),
     url(r'^pseudo/$','nemeriatools.views.pseudo_index'),
 )
