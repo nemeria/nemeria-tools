@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
+<link href='{% static "css/bootstrap-responsive.css" %}' rel="stylesheet">
+<script src='{% static "js/jquery.js" %}'></script>
+<script src='{% static "js/bootstrap.js" %}'></script>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<title>{% block title %}Nemeria Tools{% endblock %}</title>
+</head>
+<body>
+<header class="hero-unit">
+    <h1>{% block pagetitle %}Nemeria Tools{% endblock %} <small>{% block subtitle %}{% endblock %}</small></h1>
+</header>
+<div class="container row">
+    {% block content %}{% endblock %}
+</div>
+</body>
