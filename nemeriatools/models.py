@@ -1,24 +1,32 @@
 from django.db import models
 
+class Monde(models.Model):
+    nom=models.CharField(max_length=10)
+
 class Alliance(models.Model):
-    id = models.IntegerField(primary_key=True)
+    autoinc = models.AutoField(primary_key=True)
+    id = models.IntegerField()
     nom = models.CharField(max_length=30)
     pop = models.IntegerField()
     classement = models.IntegerField()
+    monde = models.ForeignKey(Monde)
     def __unicode(self):
         return self.nom
 
 class Joueur(models.Model):
-    id = models.IntegerField(primary_key=True)
+    autoinc = models.AutoField(primary_key=True)
+    id = models.IntegerField()
     nom = models.CharField(max_length=30)
     pop = models.IntegerField()
     classement = models.IntegerField()
-    alliance = models.ForeignKey(Alliance)
+    alliance = models.ForeignKey(Alliance, null=True)
+    monde = models.ForeignKey(Monde)    
     def __unicode__(self):
         return self.nom
 
 class Ville(models.Model):
-    id = models.IntegerField(primary_key=True)
+    autoinc = models.AutoField(primary_key=True)
+    id = models.IntegerField()
     nom = models.CharField(max_length=30)
     terrain = models.IntegerField()
     pop = models.IntegerField()

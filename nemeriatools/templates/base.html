@@ -8,13 +8,30 @@
 <script src='{% static "js/jquery.js" %}'></script>
 <script src='{% static "js/bootstrap.js" %}'></script>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<title>{% block title %}Nemeria Tools{% endblock %}</title>
+<title>{% block title %}tools.nemeria{% endblock %}</title>
+<style>
+    header > h1 {
+            font-family: "Ubuntu", sans;
+    }
+    header { 
+        font-family: "Open sans Condensed", serif;
+    }
+    th {
+        font-family: "Open sans Condensed", serif;
+        font-size: medium;
+</style>
 </head>
 <body>
 <header class="hero-unit">
-    <h1>{% block pagetitle %}Nemeria Tools{% endblock %} <small>{% block subtitle %}{% endblock %}</small></h1>
+    <h1>tools.nemeria<h2>{% block pagetitle %}{% endblock %}</h2></h1>
 </header>
-<div class="container row">
-    {% block content %}{% endblock %}
+<div class="container row-fluid">
+    <ul class="span2 nav nav-list">
+        <li class="nav-header">Pages</li>
+        <li><a href="/pseudo/">Joueurs</a></li>
+    </ul>
+    <div class="span10">
+        {% block content %}{% endblock %}
+    </div>
 </div>
 </body>
