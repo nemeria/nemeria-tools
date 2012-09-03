@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Carte{% endblock %}
+{% block pagetitle %}Carte{% endblock %}
+
+{% block content %}
+<form class="form" name="carteform">
+    <input type="text" class="input-small" name="monde" placeholder="monde">
+    <input type="text" class="input-xxlarge" name="alliances" placeholder="alliances, séparées par des virgules">
+    <input type="checkbox" name="drawall"> Afficher toutes les alliances
+    <input type="button" id="submit" class="btn" value="Mettre à jour la carte">
+</form>
+
+<a id="permalink" href="">
+    Permalien de l'image
+    <img id="carte" src="">
+</a>
+
+<script>
+$('#submit').click(function() {
+    
+    var src="";
+    src+="monde="+document.carteform.monde.value;
+    if (document.carteform.drawall.checked==true) {
+        src+="&drawall=1";
+    }
+    if (document.carteform.alliances.value != "") {
+        for (a in document.carteform.alliances.value.split(/,\s*/)) {
+            src+="&alliance="+document.carteform.alliances.value.split(/,\s*/)[a];
+        }
+    }
+    src+="&h="+(Math.floor($(document).width()-$(document).width()/12*2));
+    $('#carte').prop('src',"/carte/image?"+src);
+    $('#permalink').prop('href',"/carte/image?"+src);
+});
+
+</script>
+{% endblock %}
