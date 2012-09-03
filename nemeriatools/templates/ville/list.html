@@ -13,16 +13,16 @@
 <table class="table">
     <thead>
         <th>Monde</th>
-        <th>Propriétaire</th>
         <th>Nom</th>
+        <th>Propriétaire</th>
         <th>Population</th>
         <th>Alliance</th>
     </thead>
     {% for v in villes %}
     <tr>
         <td>{{ v.joueur.monde.nom }}</td>
-        <td><a href="/joueurs/{{ v.joueur.autoinc }}">{{ v.joueur.nom }}</a></td>
         <td><a href="{{ v.autoinc }}/">{{ v.nom }}</a></td>
+        <td><a href="/joueur/{{ v.joueur.autoinc }}">{{ v.joueur.nom }}</a></td>
         <td>{{ v.pop }}</td>
         <td><a href="/alliance/{{ v.joueur.alliance.autoinc }}">{{ v.joueur.alliance.nom }}</a></td>
     </tr>

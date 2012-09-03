@@ -13,6 +13,7 @@ def joueur_index(request):
     nom = request.GET.get('nom','')
     monde = request.GET.get('monde','')
     alliance = request.GET.get('alliance','')
+
     joueur_list=Joueur.objects.filter(
         nom__icontains=nom,
         monde__nom__icontains=monde,
@@ -26,10 +27,11 @@ def alliance_detail(request,alliance_autoinc):
 def alliance_index(request):
     nom = request.GET.get('nom','')
     monde = request.GET.get('monde','')
+    order = request.GET.get('order_by','autoinc')
     alliance_list=Alliance.objects.filter(
         nom__icontains=nom,
         monde__nom__icontains=monde,
-    )
+    ).order_by(order)
     return render_to_response('alliance/list.html',{"alliances": alliance_list})
 #### VILLES
 def ville_detail(request,ville_autoinc):

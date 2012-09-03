@@ -4,7 +4,6 @@
 
 {% block content %}
 <div class="well">
-    <a class="btn btn-primary btn-large" href="http://{{ joueur.monde.nom }}.nemeria.com/profil?id={{ joueur.id }}">Voir sur Nemeria</a>
     <h1>Joueur: {{ joueur.nom }}</h1>
     <dl class="dl-horizontal">
         <dt>Monde:</dt>
@@ -16,6 +15,7 @@
         <dt>Alliance:</dt>
         <dd>{{ joueur.alliance.nom }}</dd>
     </dl>
+    <a class="btn btn-primary btn-large" href="http://{{ joueur.monde.nom }}.nemeria.com/profil?id={{ joueur.id }}">Voir sur Nemeria</a>
     <a class="btn" href="/ville/?joueur={{ joueur.nom }}">Rechercher les villes de {{ joueur.nom }}</a>
 </div>
 {% endblock %}

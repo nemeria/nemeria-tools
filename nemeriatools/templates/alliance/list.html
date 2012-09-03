@@ -10,10 +10,10 @@
 </form>
 <table class="table">
     <thead>
-        <th>Monde</th>
-        <th>Nom</th>
-        <th>Population</th>
-        <th>Classement</th>
+        <th><a href="?order_by=monde">Monde</a></th>
+        <th><a href="?order_by=nom">Nom</a></th>
+        <th><a href="?order_by=pop">Population</a></th>
+        <th><a href="?order_by=classement">Classement</a></th>
     </thead>
     {% for a in alliances %}
     <tr>
@@ -23,5 +23,6 @@
         <td>{{ a.classement }}</td>
     </tr>
     {% endfor %}
+</div>
 </table>
 {% endblock %}

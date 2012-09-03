@@ -5,7 +5,6 @@
 {% block content %}
 <div class="well">
     <h1>Alliance: {{ alliance.nom }}</h1>
-    <a class="btn btn-primary btn-large" href="http://{{ alliance.monde.nom }}.nemeria.com/alliance?id={{ alliance.id }}">Voir sur Nemeria</a>
     <dl class="dl-horizontal">
         <dt>Monde:</dt>
         <dd><a href="/alliance/?monde={{ alliance.monde.nom }}">{{ alliance.monde.nom }}</a></dd>
@@ -14,6 +13,7 @@
         <dt>Classement:</dt>
         <dd>n°{{ alliance.classement }}</dd>
     </dl>
+    <a class="btn btn-primary btn-large" href="http://{{ alliance.monde.nom }}.nemeria.com/alliance?id={{ alliance.id }}">Voir sur Nemeria</a>
     <a class="btn" href="/joueur/?alliance={{ alliance.nom }}">Rechercher les joueurs de {{ alliance.nom }}</a>
     <a class="btn" href="/ville/?alliance={{ alliance.nom }}">Rechercher les villes de {{ alliance.nom }}</a>
 </div>
