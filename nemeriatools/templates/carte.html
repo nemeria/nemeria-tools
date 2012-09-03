@@ -3,8 +3,8 @@
 {% block pagetitle %}Carte{% endblock %}
 
 {% block content %}
-<form class="form-inline" name="carteform">
-    <select name="monde">
+<form class="form" name="carteform">
+    <select name="monde" class="input-small">
         {% for m in mondes %}
         <option>{{ m.nom }}</option>
         {% endfor %}
