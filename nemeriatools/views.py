@@ -50,7 +50,7 @@ def ville_index(request):
 ##############################
 #### CARTE
 def carte(request):
-    return render_to_response('carte.html', {"alliances": Alliance.objects.all()})
+    return render_to_response('carte.html', {"alliances": Alliance.objects.all(), "mondes": Monde.objects.all()})
 def carte_image(request):
     import Image, ImageDraw
     from math import ceil,floor

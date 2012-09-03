@@ -3,8 +3,12 @@
 {% block pagetitle %}Carte{% endblock %}
 
 {% block content %}
-<form class="form" name="carteform">
-    <input type="text" class="input-small" name="monde" placeholder="monde">
+<form class="form-inline" name="carteform">
+    <select name="monde">
+        {% for m in mondes %}
+        <option>{{ m.nom }}</option>
+        {% endfor %}
+    </select>
     <input type="text" class="input-xxlarge" name="alliances" placeholder="alliances, séparées par des virgules">
     <input type="checkbox" name="drawall"> Afficher toutes les alliances
     <input type="button" id="submit" class="btn" value="Mettre à jour la carte">
@@ -28,7 +32,7 @@ $('#submit').click(function() {
             src+="&alliance="+document.carteform.alliances.value.split(/,\s*/)[a];
         }
     }
-    src+="&h="+(Math.floor($(document).width()-$(document).width()/12*2));
+    src+="&h="+(Math.floor($(document).width()-$(document).width()/12*3));
     $('#carte').prop('src',"/carte/image?"+src);
     $('#permalink').prop('href',"/carte/image?"+src);
 });
