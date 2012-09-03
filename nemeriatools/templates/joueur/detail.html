@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Détail du joueur{% endblock %}
+{% block pagetitle %}Détail du joueur{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h1>Joueur: {{ joueur.nom }}</h1>
+    <dl class="dl-horizontal">
+        <dt>Monde:</dt>
+        <dd>{{ joueur.monde.nom }}</dd>
+        <dt>Population:</dt>
+        <dd>{{ joueur.pop }}</dd>
+        <dt>Classement:</dt>
+        <dd>n°{{ joueur.classement }}</dd>
+        <dt>Alliance:</dt>
+        <dd>{{ joueur.alliance.nom }}</dd>
+    </dl>
+    <a class="btn" href="/ville/?joueur={{ joueur.nom }}">Rechercher les villes de {{ joueur.nom }}</a>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@
 <script src='{% static "js/jquery.js" %}'></script>
 <script src='{% static "js/bootstrap.js" %}'></script>
 <link href='http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<title>{% block title %}tools.nemeria{% endblock %}</title>
+<title>tools.nemeria - {% block title %}tools.nemeria{% endblock %}</title>
 <style>
     header > h1 {
             font-family: "Ubuntu", sans;
@@ -23,12 +23,15 @@
 </head>
 <body>
 <header class="hero-unit">
-    <h1>tools.nemeria<h2>{% block pagetitle %}{% endblock %}</h2></h1>
+    <h1>tools.nemeria</h1><h2>{% block pagetitle %}{% endblock %}</h2>
 </header>
 <div class="container row-fluid">
     <ul class="span2 nav nav-list">
         <li class="nav-header">Pages</li>
-        <li><a href="/pseudo/">Joueurs</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/joueur/">Joueurs</a></li>
+        <li><a href="/alliance/">Alliances</a></li>
+        <li><a href="/ville/">Villes</a></li>
     </ul>
     <div class="span10">
         {% block content %}{% endblock %}

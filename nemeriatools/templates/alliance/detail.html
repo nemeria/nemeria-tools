@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Détail de l'alliance{% endblock %}
+{% block pagetitle %}Détail de l'alliance{% endblock %}
+
+{% block content %}
+<div class="well">
+    <h1>Alliance: {{ alliance.nom }}</h1>
+    <dl class="dl-horizontal">
+        <dt>Monde:</dt>
+        <dd><a href="/alliance/?monde={{ alliance.monde.nom }}">{{ alliance.monde.nom }}</a></dd>
+        <dt>Population:</dt>
+        <dd>{{ alliance.pop }}</dd>
+        <dt>Classement:</dt>
+        <dd>n°{{ alliance.classement }}</dd>
+    </dl>
+    <a class="btn" href="/joueur/?alliance={{ alliance.nom }}">Rechercher les joueurs de {{ alliance.nom }}</a>
+    <a class="btn" href="/ville/?alliance={{ alliance.nom }}">Rechercher les villes de {{ alliance.nom }}</a>
+</div>
+{% endblock %}

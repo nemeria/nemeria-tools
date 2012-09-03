@@ -16,6 +16,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     
     url(r'^$','nemeriatools.views.home'),
-    url(r'^pseudo/(?P<joueur_id>\d+)/$','nemeriatools.views.pseudo_detail'),
-    url(r'^pseudo/$','nemeriatools.views.pseudo_index'),
+    # Vue liste + detail pour joueurs, alliances, villes
+    url(r'^joueur/$','nemeriatools.views.joueur_index'),
+    url(r'^joueur/(?P<joueur_autoinc>\d+)/$','nemeriatools.views.joueur_detail'),
+    url(r'^alliance/$', 'nemeriatools.views.alliance_index'),
+    url(r'^alliance/(?P<alliance_autoinc>\d+)/$','nemeriatools.views.alliance_detail'),
+    url(r'^ville/$', 'nemeriatools.views.ville_index'),
+    url(r'^ville/(?P<ville_autoinc>\d+)/$','nemeriatools.views.ville_detail'),
 )

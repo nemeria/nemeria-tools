@@ -1,46 +1,27 @@
-{% load staticfiles %}
-<!doctype html>
-<html>
-<head>
-    <title>tools.nemeria</title>
-    <meta charset="utf-8">
-    <link href='{% static "css/bootstrap.css" %}' rel="stylesheet">
-    <link href='{% static "css/bootstrap-responsive.css" %}' rel="stylesheet">
-    <script src='{% static "js/jquery.js" %}'></script>
-    <script src='{% static "js/bootstrap.js" %}'></script>
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-    <style>
-    .home {
-        text-align: center;
-        font-family: "Ubuntu", sans-serif;
-    }
-    h2 {
-        text-align: center;
-        font-family: 'Open Sans Condensed', sans-serif;
-        line-height: 50px;
-    }
-    p {
-        text-align: justify;
-        text-justify: newspaper;
-        font-size: large;
-        line-height: 25px;
-    }
-    li {
-        font-size: large;
-        text-align: left;
-        line-height: 25px;
-    }
-    </style>
-</head>
-<body>
-<div class="container home">
-    <div class="hero-unit" style="text-align: center">
-        <h1>tools.nemeria</h1>
-    </div>
+{% extends "base.html" %}
+
+{% block title %}tools.nemeria{% endblock %}
+{% block content %}
+<style>
+h2 {
+    text-align: center;
+    font-size:120%;
+    font-family: 'Open Sans Condensed', sans-serif;
+    line-height: 50px;
+}
+.marketing {
+    font-family: 'Ubuntu', sans-serif;
+    text-align: justify;
+    text-justify: newspaper;
+    font-size: large;
+    line-height: 25px;
+}
+</style>
+<div class="span10">
     <div class="well" style="text-align: center; font-family: 'Open Sans Condensed';">
         <h1>Bienvenue sur tools.nemeria, le site communautaire d'outils pour <a href="http://nemeria.com" a>Nemeria.</a></h1>
     </div>
-    <div class="row">
+    <div class="row marketing">
         <div class="span4">
             <h2>Par les joueurs, pour les joueurs.</h2>
             <p>Toutes les contributions sont les bienvenues. Les sources sont sur <a href="https://github.com/nemeria/nemeria-tools">github</a>, n'hésitez pas à y jeter un coup d'oeil. Si vous voulez apporter votre aide, ou que vous avez une idée, un bug à reporter ou encore une amélioration à proposer, contactez etiandre ou pierre sur <a href="irc://irc.nemeria.com:6667/nemeria">IRC</a>.</p>
@@ -56,11 +37,13 @@
             </ul>
         </div>
         <div class="span4">
-            <h2>Comment?</h2>
-            <p>Bâti en Python/Django, le projet vise à mettre à disposition des outils améliorant le confort de jeu, sans pour autant remplacer le premium ou le cerveau des joueurs. Les outils doivent être accessibles à tous, sans discrimination d'alliance ou de peuple.</p>
+            <h2>Changelog</h2>
+            <dl>
+                <dt>03/09/2012</dt>
+                <dd>Ajout des listes de joueurs, alliances et villes</dd>
+            </dl>
         </div>
     </div>
 </div>
-
-</body>
-</html>
+</style>
+{% endblock %}  

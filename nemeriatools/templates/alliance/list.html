@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des alliances{% endblock %}
+{% block pagetitle %}Liste des alliances{% endblock %}
+{% block content %}
+<form class="form-inline" method="GET">
+    Nom :<input type="text" class="input-small" name="nom" placeholder="n'importe">
+    Monde :<input type="text" class="input-small" name="monde" placeholder="n'importe">
+    <input type="submit" class="btn" value="Rechercher">
+</form>
+<table class="table">
+    <thead>
+        <th>Monde</th>
+        <th>Nom</th>
+        <th>Population</th>
+        <th>Classement</th>
+    </thead>
+    {% for a in alliances %}
+    <tr>
+        <td>{{ a.monde.nom }}</td>
+        <td><a href="{{ a.autoinc }}/">{{ a.nom }}</a></td>
+        <td>{{ a.pop }}</td>
+        <td>{{ a.classement }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

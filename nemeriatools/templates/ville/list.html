@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des villes{% endblock %}
+{% block pagetitle %}Liste des villes{% endblock %}
+{% block content %}
+<form class="form-inline" method="GET">
+    Monde :<input type="text" class="input-small" name="monde" placeholder="n'importe">
+    Alliance :<input type="text" class="input-small" name="alliance" placeholder="n'importe">
+    Joueur :<input type="text" class="input-small" name="joueur" placeholder="n'importe">
+    Nom :<input type="text" class="input-small" name="nom" placeholder="n'importe">
+    <input type="submit" class="btn" value="Rechercher">
+</form>
+<table class="table">
+    <thead>
+        <th>Monde</th>
+        <th>Propriétaire</th>
+        <th>Nom</th>
+        <th>Population</th>
+        <th>Alliance</th>
+    </thead>
+    {% for v in villes %}
+    <tr>
+        <td>{{ v.joueur.monde.nom }}</td>
+        <td><a href="/joueurs/{{ v.joueur.autoinc }}">{{ v.joueur.nom }}</a></td>
+        <td><a href="{{ v.autoinc }}/">{{ v.nom }}</a></td>
+        <td>{{ v.pop }}</td>
+        <td><a href="/alliance/{{ v.joueur.alliance.autoinc }}">{{ v.joueur.alliance.nom }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

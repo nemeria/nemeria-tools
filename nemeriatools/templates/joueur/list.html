@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Liste des joueurs{% endblock %}
+{% block pagetitle %}Liste des joueurs{% endblock %}
+{% block content %}
+<form class="form-inline" method="GET">
+    Monde :<input type="text" class="input-small" name="monde" placeholder="n'importe">
+    Alliance :<input type="text" class="input-small" name="alliance" placeholder="n'importe">
+    Nom :<input type="text" class="input-small" name="nom" placeholder="n'importe">
+    <input type="submit" class="btn" value="Rechercher">
+</form>
+<table class="table">
+    <thead>
+        <th>Monde</th>
+        <th>Nom</th>
+        <th>Population</th>
+        <th>Classement</th>
+        <th>Alliance</th>
+    </thead>
+    {% for j in joueurs %}
+    <tr>
+        <td>{{ j.monde.nom }}</td>
+        <td><a href="{{ j.autoinc }}/">{{ j.nom }}</a></td>
+        <td>{{ j.pop }}</td>
+        <td>{{ j.classement }}</td>
+        <td><a href="/alliance/?nom={{ j.alliance.nom }}&monde={{ j.monde.nom }}">{{ j.alliance.nom }}</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
