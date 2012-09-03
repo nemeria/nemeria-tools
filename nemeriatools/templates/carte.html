@@ -1,8 +1,10 @@
+
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}Carte{% endblock %}
 {% block pagetitle %}Carte{% endblock %}
 
-<script src='{% static "js/carte.js" %}'></script>
+
 
 {% block content %}
 <form class="form" name="carteform">
@@ -20,7 +22,7 @@
     Permalien de l'image
     <img id="carte" src="">
 </a>
-
+<script src='{% static "js/carte.js" %}'></script>
 <script>
 $('#submit').click(function() {
     
