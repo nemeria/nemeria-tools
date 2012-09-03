@@ -2,6 +2,8 @@ from django.db import models
 
 class Monde(models.Model):
     nom=models.CharField(max_length=10)
+    carte_x=models.IntegerField()
+    carte_y=models.IntegerField()
 
 class Alliance(models.Model):
     autoinc = models.AutoField(primary_key=True)

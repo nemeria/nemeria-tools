@@ -5,6 +5,7 @@
 {% block content %}
 <div class="well">
     <h1>Ville: {{ ville.nom }}</h1>
+    <a class="btn btn-primary btn-large" href="http://{{ ville.joueur.monde.nom }}.nemeria.com/carte?case={{ ville.id }}">Voir sur Nemeria</a>
     <dl class="dl-horizontal">
         <dt>Monde:</dt>
         <dd>{{ ville.joueur.monde.nom }}</dd>

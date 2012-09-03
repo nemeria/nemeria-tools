@@ -47,3 +47,45 @@ def ville_index(request):
         joueur__alliance__nom__icontains=alliance
     )
     return render_to_response('ville/list.html',{"villes": ville_list})
+##############################
+#### CARTE
+def carte(request):
+    return render_to_response('carte.html', {"alliances": Alliance.objects.all()})
+def carte_image(request):
+    import Image, ImageDraw
+    from math import ceil,floor
+    from random import randrange
+    monde = request.GET.get('monde')
+    todraw=request.GET.getlist('alliance')
+    todraw=[x.lower() for x in todraw]
+    drawall=request.GET.get('drawall')
+    height=int(request.GET.get('h', 1000))
+    if height > 3000: height=3000
+    CARTE_X=Monde.objects.get(nom=monde).carte_x
+    CARTE_Y=Monde.objects.get(nom=monde).carte_y
+    colors=[(255,0,0),(0,255,0),(0,0,255),(255,200,0),(255,0,255),(0,255,255),(0,0,0)]
+    blocksize=int(height/CARTE_X)
+    height=blocksize*CARTE_X
+    print blocksize
+    im=Image.new('RGB',(height+200,height))
+    draw=ImageDraw.Draw(im)
+    draw.rectangle([0,0,height+200,height],fill=(250,250,250))
+    draw.rectangle([0,0,height,height],fill=(255,255,255))
+    
+    i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
+    for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
+        if not drawall and not alliance.nom.lower() in todraw: continue # si l'alliance n'est pas demandee, ne pas la dessiner
+        try: colors[c] # si y'a pas assez de couleurs, on en rajoute une
+        except: colors.append((randrange(0,230),randrange(0,230),randrange(0,230)))
+        for ville in Ville.objects.filter(joueur__alliance__nom=alliance.nom,joueur__monde__nom=monde):
+            x=(ville.id%CARTE_Y)*blocksize
+            y=int(CARTE_Y-floor(ville.id/CARTE_Y))*blocksize
+            draw.rectangle([x+1,y+1,x+blocksize-1,y+blocksize-1],fill=colors[i]) # dessin du carre  
+        draw.rectangle([height+10,i*30+5,height+35,i*30+25],fill=colors[i]) 
+        draw.text((height+50,i*30+10), alliance.nom, fill=colors[i])
+        i+=1
+    
+    response=HttpResponse(mimetype="image/png")
+    im.save(response,'PNG')
+    return response
+    
