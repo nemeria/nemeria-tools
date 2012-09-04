@@ -3,12 +3,9 @@
 {% load staticfiles %}
 {% block title %}Carte{% endblock %}
 {% block pagetitle %}Carte{% endblock %}
-
-
-
 {% block content %}
 <script src='{% static "js/carte.js" %}'></script>
-<form class="form-inline" name="carteform">
+<form class="form-inline" name="carteform" action="#">
     <select name="monde" class="input-small">
         {% for m in mondes %}
         <option>{{ m.nom }}</option>

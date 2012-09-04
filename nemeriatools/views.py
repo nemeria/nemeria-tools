@@ -83,8 +83,8 @@ def carte_image(request):
     draw.rectangle([0,0,height,height],fill=(255,255,255))
     
     blocksize=blocksize*(zoom+1)
-    xpos=xpos-CARTE_X+CARTE_X*zoom
-    ypos=ypos-CARTE_Y+CARTE_Y*zoom
+    xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
+    ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
     print xpos,ypos,zoom
     i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
     for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
