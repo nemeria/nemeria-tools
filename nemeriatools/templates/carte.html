@@ -16,6 +16,8 @@
     </select>
     <input type="checkbox" name="drawall"> Afficher toutes les alliances
     <input type="text" class="input-xxlarge" name="alliances" placeholder="alliances, séparées par des virgules">
+
+    <input type="submit" class="btn" value="Mettre à jour la carte">
 </form>
 <form class="form-inline" name="controls">
         Zoom: 
@@ -35,5 +37,5 @@
     Permalien de l'image
     <img id="carte" src="">
 </a>
-
+<script src='{% static "js/carte.js" %}'></script>
 {% endblock %}
