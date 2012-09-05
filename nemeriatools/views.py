@@ -78,15 +78,15 @@ def carte_image(request):
     height=blocksize*CARTE_X 
 
     im=Image.new('RGB',(height+200,height))
-    minimap=Image.open("nemeriatools/static/img/"+monde+".png")
-    minimap=minimap.resize((height,height), Image.NEAREST)
-    im.paste(minimap,(0,0))
+    #~ minimap=Image.open("nemeriatools/static/img/"+monde+".png")
+    #~ minimap=minimap.resize((height,height), Image.NEAREST)
+    #~ im.paste(minimap,(0,0))
     draw=ImageDraw.Draw(im)
     draw.rectangle([height,0,height+200,height],fill=(250,250,250))
     
     blocksize=blocksize*(zoom+1)
-    #~ xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
-    #~ ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
+    xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
+    ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
     print xpos,ypos,zoom
     i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
     for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
