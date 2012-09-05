@@ -13,6 +13,7 @@ Joueur.objects.all().delete()
 Alliance.objects.all().delete()
 
 for monde in Monde.objects.all():
+    urllib.urlretrieve("http://"+monde.nom+".nemeria.com/img/carte.png","nemeriatools/static/img/"+monde.nom+".png")
     mondeJson=json.loads(urllib.urlopen("http://"+monde.nom+".nemeria.com/ext/json").read())
     for allianceJson in mondeJson['alliances']:
         Alliance(id=allianceJson['id'],
