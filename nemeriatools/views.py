@@ -78,9 +78,11 @@ def carte_image(request):
     height=blocksize*CARTE_X 
 
     im=Image.new('RGB',(height+200,height))
+    minimap=Image.open("nemeriatools/static/img/"+monde+".png")
+    minimap=minimap.resize((height,height), Image.NEAREST)
+    im.paste(minimap,(0,0))
     draw=ImageDraw.Draw(im)
-    draw.rectangle([0,0,height+200,height],fill=(250,250,250))
-    draw.rectangle([0,0,height,height],fill=(255,255,255))
+    draw.rectangle([height,0,height+200,height],fill=(250,250,250))
     
     blocksize=blocksize*(zoom+1)
     xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
