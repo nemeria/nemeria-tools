@@ -7,19 +7,18 @@
 <link href='{% static "css/bootstrap-responsive.css" %}' rel="stylesheet">
 <script src='{% static "js/jquery.js" %}'></script>
 <script src='{% static "js/bootstrap.js" %}'></script>
+<!-- Piwik -->
 <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34587963-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://etiandre.comoj.com/piwik/" : "http://etiandre.comoj.com/piwik/");
+document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://etiandre.comoj.com/piwik/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+<!-- End Piwik Tracking Code -->
 <link href='http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 <title>tools.nemeria - {% block title %}tools.nemeria{% endblock %}</title>
 <style>
