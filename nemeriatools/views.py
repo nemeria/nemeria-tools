@@ -68,9 +68,9 @@ def carte_image(request):
     todraw=[x.lower() for x in todraw]
     drawall=request.GET.get('drawall')
     height=int(request.GET.get('h', 1000))
-    zoom=int(request.GET.get('z', 1))
-    ypos=int(request.GET.get('y', 1))
-    xpos=int(request.GET.get('x', 1))
+    zoom=int(request.GET.get('z', 0))
+    ypos=int(request.GET.get('y', 0))
+    xpos=int(request.GET.get('x', 0))
     
     print xpos,ypos,zoom
     if height > 3000: height=3000
@@ -85,8 +85,8 @@ def carte_image(request):
     draw.rectangle([height,0,height+200,height],fill=(250,250,250))
     
     blocksize=blocksize*(zoom+1)
-    xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
-    ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
+    #~ xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
+    #~ ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
     print xpos,ypos,zoom
     i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
     for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
