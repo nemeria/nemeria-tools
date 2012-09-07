@@ -1,0 +1,4 @@
+par Misdre » Ven Sep 07, 2012 1:29 am
+Et un truc type calculateur de POULETS consommés, ça a sa place dans ces outils ?
+
+(je pense à une interface proche de celle du simulateur)
