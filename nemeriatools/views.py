@@ -13,13 +13,18 @@ def joueur_index(request):
     nom = request.GET.get('nom','')
     monde = request.GET.get('monde','')
     alliance = request.GET.get('alliance','')
-
+    order = request.GET.get('order_by','autoinc')
+    page = request.GET.get('page',1)
     joueur_list=Joueur.objects.filter(
         nom__icontains=nom,
         monde__nom__icontains=monde,
         alliance__nom__icontains=alliance,
-    )
-    return render_to_response('joueur/list.html',{"joueurs": joueur_list, })
+    ).order_by(order)
+    paginator = Paginator(joueur_list, 50)
+    try: joueurs = paginator.page(page)
+    except PageNotAnInteger: joueurs = paginator.page(1)
+    except EmptyPage: joueurs = paginator.page(paginator.num_pages)
+    return render_to_response('joueur/list.html',{"joueurs": joueurs, "nom": nom, "monde": monde, "alliance": alliance, "order": order})
 #### ALLIANCES
 def alliance_detail(request,alliance_autoinc):
     return render_to_response('alliance/detail.html',{"alliance": Alliance.objects.get(pk=alliance_autoinc)})
@@ -28,11 +33,16 @@ def alliance_index(request):
     nom = request.GET.get('nom','')
     monde = request.GET.get('monde','')
     order = request.GET.get('order_by','autoinc')
+    page = request.GET.get('page',1)
     alliance_list=Alliance.objects.filter(
         nom__icontains=nom,
         monde__nom__icontains=monde,
     ).order_by(order)
-    return render_to_response('alliance/list.html',{"alliances": alliance_list})
+    paginator = Paginator(alliance_list, 50)
+    try: alliances = paginator.page(page)
+    except PageNotAnInteger: alliances = paginator.page(1)
+    except EmptyPage: alliances = paginator.page(paginator.num_pages)
+    return render_to_response('alliance/list.html',{"alliances": alliances, "nom": nom, "monde": monde, "order": order})
 #### VILLES
 def ville_detail(request,ville_autoinc):
     return render_to_response('ville/detail.html',{"ville": Ville.objects.get(pk=ville_autoinc)})
@@ -42,13 +52,19 @@ def ville_index(request):
     monde = request.GET.get('monde','')
     joueur = request.GET.get('joueur','')
     alliance = request.GET.get('alliance','')
+    order = request.GET.get('order_by','autoinc')
+    page = request.GET.get('page',1)
     ville_list=Ville.objects.filter(
         nom__icontains=nom,
         joueur__monde__nom__icontains=monde,
         joueur__nom__icontains=joueur,
         joueur__alliance__nom__icontains=alliance
-    )
-    return render_to_response('ville/list.html',{"villes": ville_list})
+    ).order_by(order)
+    paginator = Paginator(ville_list, 50)
+    try: villes = paginator.page(page)
+    except PageNotAnInteger: villes = paginator.page(1)
+    except EmptyPage: villes = paginator.page(paginator.num_pages)
+    return render_to_response('ville/list.html',{"villes": villes, "nom": nom, "monde": monde, "joueur": joueur, "alliance": alliance, "order": order})
 ##############################
 #### CARTE
 def carte(request):

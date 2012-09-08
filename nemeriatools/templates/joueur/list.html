@@ -11,11 +11,11 @@
 </form>
 <table class="table">
     <thead>
-        <th>Monde</th>
-        <th>Nom</th>
-        <th>Population</th>
-        <th>Classement</th>
-        <th>Alliance</th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by=monde&page={{ joueurs.number }}">Monde</th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by=nom&page={{ joueurs.number }}">Nom</th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by=pop&page={{ joueurs.number }}">Population</th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by=classement&page={{ joueurs.number }}">Classement</th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by=alliance__nom&page={{ joueurs.number }}">Alliance</th>
     </thead>
     {% for j in joueurs %}
     <tr>
@@ -27,4 +27,13 @@
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
+{% block pagination %}
+    {% if joueurs.has_previous %}
+    <li><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by={{ order }}&page={{ joueurs.previous_page_number }}">Précédent</a></li>
+    {% endif %}
+    <li class="active"><a href="#">Page {{ joueurs.number }} sur {{ joueurs.paginator.num_pages }}.</a></li>
+    {% if joueurs.has_next %}
+    <li><a href="?nom={{ nom }}&monde={{ monde }}&alliance={{ alliance }}&order_by={{ order }}&page={{ joueurs.next_page_number }}">Suivant</a></li>
+    {% endif %}
 {% endblock %}

@@ -10,10 +10,10 @@
 </form>
 <table class="table">
     <thead>
-        <th><a href="?order_by=monde">Monde</a></th>
-        <th><a href="?order_by=nom">Nom</a></th>
-        <th><a href="?order_by=pop">Population</a></th>
-        <th><a href="?order_by=classement">Classement</a></th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&order_by=monde&page={{ alliances.number }}">Monde</a></th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&order_by=nom&page={{ alliances.number }}">Nom</a></th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&order_by=pop&page={{ alliances.number }}">Population</a></th>
+        <th><a href="?nom={{ nom }}&monde={{ monde }}&order_by=classement&page={{ alliances.number }}">Classement</a></th>
     </thead>
     {% for a in alliances %}
     <tr>
@@ -25,4 +25,13 @@
     {% endfor %}
 </div>
 </table>
+{% endblock %}
+{% block pagination %}
+    {% if alliances.has_previous %}
+    <li><a href="?nom={{ nom }}&monde={{ monde }}&order_by={{ order }}&page={{ alliances.previous_page_number }}">Précédent</a></li>
+    {% endif %}
+    <li class="active"><a href="#">Page {{ alliances.number }} sur {{ alliances.paginator.num_pages }}.</a></li>
+    {% if alliances.has_next %}
+    <li><a href="?nom={{ nom }}&monde={{ monde }}&order_by={{ order }}&page={{ alliances.next_page_number }}">Suivant</a></li>
+    {% endif %}
 {% endblock %}
