@@ -99,6 +99,7 @@ def carte_image(request):
     #~ im.paste(minimap,(0,0))
     draw=ImageDraw.Draw(im)
     draw.rectangle([height,0,height+200,height],fill=(250,250,250))
+    draw.rectangle([0,0,height,height],fill=(255,255,255))
     
     blocksize=blocksize*(zoom+1)
     xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
