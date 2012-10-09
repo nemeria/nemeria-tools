@@ -25,4 +25,5 @@ urlpatterns = patterns('',
     url(r'^ville/(?P<ville_autoinc>\d+)/$','nemeriatools.views.ville_detail'),
     url(r'^carte/$', 'nemeriatools.views.carte'),
     url(r'^carte/image$', 'nemeriatools.views.carte_image'),
+    url(r'^cuisse$', 'nemeriatools.views.cuisse'),
 )

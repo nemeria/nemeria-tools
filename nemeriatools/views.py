@@ -122,4 +122,6 @@ def carte_image(request):
     response=HttpResponse(mimetype="image/png")
     im.save(response,'PNG')
     return response
-    
+
+def cuisse(request):
+    return render_to_response('cuisse.html')
