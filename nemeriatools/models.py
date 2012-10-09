@@ -12,7 +12,7 @@ class Alliance(models.Model):
     pop = models.IntegerField()
     classement = models.IntegerField()
     monde = models.ForeignKey(Monde)
-    def __unicode(self):
+    def __unicode__(self):
         return self.nom
 
 class Joueur(models.Model):
