@@ -12,11 +12,11 @@ $(function() {
                 src+="&alliance="+document.carteform.alliances.value.split(/,\s*/)[a];
             }
         }
-        src+="&h="+(Math.floor($(document).width()-$(document).width()/12*3));
+        src+="&h="+(Math.floor($(document).width()-$(document).width()/12*4));
         xpos=$('input[name=xpos]').prop('value');
         ypos=$('input[name=ypos]').prop('value');
-        if (isNaN(xpos)) { xpos="100" }
-        if (isNaN(ypos)) { ypos="100" }
+        if (isNaN(xpos)) { xpos="0" }
+        if (isNaN(ypos)) { ypos="0" }
         zoom=parseInt($('select[name=zoom]').prop('value'));
         src+="&x="+xpos;
         src+="&y="+ypos;

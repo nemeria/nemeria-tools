@@ -78,47 +78,45 @@ def carte_image(request):
     CARTE_X=Monde.objects.get(nom=monde).carte_x
     CARTE_Y=Monde.objects.get(nom=monde).carte_y
     colors=[(255,0,0),(0,255,0),(0,0,255),(255,200,0),(255,0,255),(0,255,255),(0,0,0)]
-
-
+    
+    height=int(request.GET.get('h', 1))
     todraw=request.GET.getlist('alliance')
     todraw=[x.lower() for x in todraw]
     drawall=request.GET.get('drawall')
-    height=int(request.GET.get('h', 1000))
-    zoom=int(request.GET.get('z', 0))
-    ypos=int(request.GET.get('y', 0))
+    zoom=int(request.GET.get('z', 1))
     xpos=int(request.GET.get('x', 0))
+    ypos=int(request.GET.get('y', 0))
     
-    print xpos,ypos,zoom
-    if height > 3000: height=3000
-    blocksize=int(height/CARTE_X)
-    height=blocksize*CARTE_X 
-
-    im=Image.new('RGB',(height+200,height))
-    #~ minimap=Image.open("nemeriatools/static/img/"+monde+".png")
-    #~ minimap=minimap.resize((height,height), Image.NEAREST)
-    #~ im.paste(minimap,(0,0))
-    draw=ImageDraw.Draw(im)
-    draw.rectangle([height,0,height+200,height],fill=(250,250,250))
-    draw.rectangle([0,0,height,height],fill=(255,255,255))
-    
-    blocksize=blocksize*(zoom+1)
-    xpos=xpos-CARTE_X+CARTE_X*(zoom+1)
-    ypos=ypos-CARTE_Y+CARTE_Y*(zoom+1)
-    print xpos,ypos,zoom
+    legende=Image.new('RGB',(200,height))
+    lighten=Image.new('RGB',(CARTE_X,CARTE_Y),(255,255,255))
+    minimap=Image.open("nemeriatools/static/img/"+monde+".png")
+    minimap=minimap.convert('RGB')
+    minimap=Image.blend(minimap,lighten,0.6)
+    minidraw=ImageDraw.Draw(minimap)
+    legedraw=ImageDraw.Draw(legende)
+    legedraw.rectangle([0,0,200,height],(255,255,255))
     i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
     for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
         if not drawall and not alliance.nom.lower() in todraw: continue # si l'alliance n'est pas demandee, ne pas la dessiner
         try: colors[c] # si y'a pas assez de couleurs, on en rajoute une
         except: colors.append((randrange(0,230),randrange(0,230),randrange(0,230)))
         for ville in Ville.objects.filter(joueur__alliance__nom=alliance.nom,joueur__monde__nom=monde):
-            x=(ville.id%CARTE_Y)*blocksize-xpos
-            y=int(CARTE_Y-floor(ville.id/CARTE_Y))*blocksize-ypos
-
-            draw.rectangle([x+1,y+1,x+blocksize-1,y+blocksize-1],fill=colors[i]) 
-        draw.rectangle([height+10,i*30+5,height+35,i*30+25],fill=colors[i]) 
-        draw.text((height+50,i*30+10), alliance.nom, fill=colors[i])
+            x=(ville.id%CARTE_Y)
+            y=int(CARTE_Y-floor(ville.id/CARTE_Y))
+            print x,y
+            minidraw.rectangle([x,y,x,y],fill=colors[i]) 
+        legedraw.rectangle([10,i*30+5,35,i*30+25],fill=colors[i]) 
+        legedraw.text((50,i*30+10), alliance.nom, fill=colors[i])
         i+=1
     
+    minimap=minimap.resize((301*zoom,301*zoom), Image.NEAREST)
+    minimap_x=(height-CARTE_X*zoom)/2-(xpos*zoom)
+    minimap_y=(height-CARTE_X*zoom)/2+(ypos*zoom)
+    
+    im=Image.new('RGB',(height+200,height))
+    im.paste(minimap,(minimap_x,minimap_y))
+    im.paste(legende,(height,0))
+
     response=HttpResponse(mimetype="image/png")
     im.save(response,'PNG')
     return response
