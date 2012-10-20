@@ -29,7 +29,7 @@ for monde in Monde.objects.all():
         alliance.save()
     for joueurJson in mondeJson['joueurs']:
         alliance=None
-        try: alliance=Alliance.objects.get(id=joueurJson['alliance'],monde=monde.id)
+        try: alliance=Alliance.objects.get(id=joueurJson['alliance'],monde=monde)
         except: pass # = pas d'alliance, on laisse à None
         try: joueur=Joueur.objects.get(id=joueurJson['id'],monde=monde)
         except:
@@ -43,7 +43,7 @@ for monde in Monde.objects.all():
         joueur.monde=monde
         joueur.save()
         for villeJson in joueurJson['villes']:
-            try: ville=Ville.objects.get(id=villeJson['ville'],monde=monde.id)
+            try: ville=Ville.objects.get(id=villeJson['ville'],joueur=joueur)
             except:
                 print "Nouvelle ville sur", monde.nom,"de",joueurJson['nom'],":", villeJson['nom']
                 ville=Ville()
