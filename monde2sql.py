@@ -19,7 +19,7 @@ for monde in Monde.objects.all():
     for allianceJson in mondeJson['alliances']:
         try: alliance=Alliance.objects.get(id=allianceJson['id'],monde=monde)
         except:
-            print "nouvelle alliance!",monde.nom,allianceJson['nom']
+            print "Nouvelle alliance sur",monde.nom,":",allianceJson['nom']
             alliance=Alliance()
         alliance.id=allianceJson['id']
         alliance.nom=allianceJson['nom']
@@ -33,7 +33,7 @@ for monde in Monde.objects.all():
         except: pass # = pas d'alliance, on laisse à None
         try: joueur=Joueur.objects.get(id=joueurJson['id'],monde=monde)
         except:
-            print "nouveau joueur!", monde.nom, joueurJson['nom']
+            print "Un joueur s'est inscrit sur", monde.nom,":", joueurJson['nom']
             joueur=Joueur()
         joueur.id=joueurJson['id']
         joueur.nom=joueurJson['nom']
@@ -45,7 +45,7 @@ for monde in Monde.objects.all():
         for villeJson in joueurJson['villes']:
             try: ville=Ville.objects.get(id=villeJson['ville'],monde=monde.id)
             except:
-                print "nouvelle ville!", monde.nom, villeJson['nom']
+                print "Nouvelle ville sur", monde.nom,"de",joueurJson['nom'],":", villeJson['nom']
                 ville=Ville()
             ville.id=villeJson['id']
             ville.nom=villeJson['nom']
