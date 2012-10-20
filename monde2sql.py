@@ -43,7 +43,7 @@ for monde in Monde.objects.all():
         joueur.monde=monde
         joueur.save()
         for villeJson in joueurJson['villes']:
-            try: ville=Ville.objects.get(id=villeJson['ville'],joueur=joueur)
+            try: ville=Ville.objects.get(id=villeJson['id'],joueur=joueur)
             except:
                 print "Nouvelle ville sur", monde.nom,"de",joueurJson['nom'],":", villeJson['nom']
                 ville=Ville()
