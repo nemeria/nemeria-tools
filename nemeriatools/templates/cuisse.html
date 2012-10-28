@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Calculateur de consommation{% endblock %}
+{% block pagetitle %}Calculateur de consommation des troupes{% endblock %}
+
+{% block content %}
+<script src='{% static "js/cuisse.js" %}'></script>
+<link href='{% static "css/militaire.css" %}' rel="stylesheet">
+<div class="well">
+    <form class="form">
+        <input type="button" class="btn" name="add1" value="Ajouter un Isurion">
+        <input type="button" class="btn" name="add2" value="Ajouter un Myrnien">
+        <input type="button" class="btn" name="add3" value="Ajouter un Aesien">
+    </form>
+    <table id="troupetable">
+
+    </table>
+</div>
+{% endblock %}
+

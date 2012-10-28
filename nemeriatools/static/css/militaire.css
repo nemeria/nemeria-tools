@@ -1,0 +1,56 @@
+@charset UTF-8;
+/*
+Honteux copier-coller de nemeria.com
+*/
+.listetroupes {
+    list-style: none outside none;
+}
+div.troupes {
+    border: 1px solid #472712;
+    height: 31px;
+    width: 29px;
+}
+
+div.p1 {
+background-image:url("/static/img/icop1.png");
+}   
+
+div.p2 {
+background-image:url("/static/img/icop2.png");
+}
+
+div.p3 {
+background-image:url("/static/img/icop3.png");
+}
+
+div.u1 {
+background-position:0px 0;
+}
+
+div.u2 {
+background-position:-29px 0;
+}
+
+div.u3 {
+background-position:-58px 0;
+}
+
+div.u4 {
+background-position:-87px 0;
+}
+
+div.u5 {
+background-position:-116px 0;
+}
+
+div.u6 {
+background-position:-145px 0;
+}
+
+div.u7 {
+background-position:-174px 0;
+}
+
+div.u8 {
+background-position:-203px 0;
+}
