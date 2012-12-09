@@ -92,7 +92,7 @@ def carte_image(request):
     monde = request.GET.get('monde')
     CARTE_X=Monde.objects.get(nom=monde).carte_x
     CARTE_Y=Monde.objects.get(nom=monde).carte_y
-    colors=[(255,0,0),(0,255,0),(0,0,255),(255,200,0),(255,0,255),(0,255,255),(0,0,0)]
+    colors=[(255,0,0),(0,255,0),(0,0,255),(255,200,0),(255,0,255),(0,255,255),(255,127,0),(255,127,127),(127,0,255),(0,0,0)]
     
     height=int(request.GET.get('h', 1))
     todraw=request.GET.getlist('alliance')
@@ -111,7 +111,7 @@ def carte_image(request):
     legedraw=ImageDraw.Draw(legende)
     legedraw.rectangle([0,0,200,height],(255,255,255))
     i=0 # compteur de l'alliance, utilise pour les couleurs et le texte
-    for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement"):
+    for alliance in Alliance.objects.filter(monde__nom__iexact=monde).order_by("classement")[:10]:
         if not drawall and not alliance.nom.lower() in todraw: continue # si l'alliance n'est pas demandee, ne pas la dessiner
         try: colors[c] # si y'a pas assez de couleurs, on en rajoute une
         except: colors.append((randrange(0,230),randrange(0,230),randrange(0,230)))
