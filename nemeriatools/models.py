@@ -4,6 +4,8 @@ class Monde(models.Model):
     nom=models.CharField(max_length=10)
     carte_x=models.IntegerField()
     carte_y=models.IntegerField()
+    def __unicode__(self):
+		return self.nom
 
 class Alliance(models.Model):
     autoinc = models.AutoField(primary_key=True)
