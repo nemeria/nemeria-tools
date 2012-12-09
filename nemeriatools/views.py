@@ -15,11 +15,18 @@ def joueur_index(request):
     alliance = request.GET.get('alliance','')
     order = request.GET.get('order_by','autoinc')
     page = request.GET.get('page',1)
-    joueur_list=Joueur.objects.filter(
-        nom__icontains=nom,
-        monde__nom__icontains=monde,
-        alliance__nom__icontains=alliance,
-    ).order_by(order)
+    joueur_list=None
+    if alliance == '':
+	joueur_list=Joueur.objects.filter(
+	    nom__icontains=nom,
+	    monde__nom__icontains=monde,
+	).order_by(order)
+    else:
+	joueur_list=Joueur.objects.filter(
+	    nom__icontains=nom,
+	    monde__nom__icontains=monde,
+	    alliance__nom__icontains=alliance,
+	).order_by(order)
     paginator = Paginator(joueur_list, 50)
     try: joueurs = paginator.page(page)
     except PageNotAnInteger: joueurs = paginator.page(1)
@@ -54,12 +61,20 @@ def ville_index(request):
     alliance = request.GET.get('alliance','')
     order = request.GET.get('order_by','autoinc')
     page = request.GET.get('page',1)
-    ville_list=Ville.objects.filter(
-        nom__icontains=nom,
-        joueur__monde__nom__icontains=monde,
-        joueur__nom__icontains=joueur,
-        joueur__alliance__nom__icontains=alliance
-    ).order_by(order)
+    ville_list=None
+    if alliance == '':
+	ville_list=Ville.objects.filter(
+	    nom__icontains=nom,
+	    joueur__monde__nom__icontains=monde,
+	    joueur__nom__icontains=joueur,
+	).order_by(order)
+    else:
+	ville_list=Ville.objects.filter(
+	nom__icontains=nom,
+	    joueur__monde__nom__icontains=monde,
+	    joueur__nom__icontains=joueur,
+	    joueur__alliance__nom__icontains=alliance
+	).order_by(order)
     paginator = Paginator(ville_list, 50)
     try: villes = paginator.page(page)
     except PageNotAnInteger: villes = paginator.page(1)
