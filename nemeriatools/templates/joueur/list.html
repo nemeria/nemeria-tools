@@ -4,7 +4,12 @@
 {% block pagetitle %}Liste des joueurs{% endblock %}
 {% block content %}
 <form class="form-inline" method="GET">
-    Monde :<input type="text" class="input-small" name="monde" placeholder="n'importe">
+    Monde :<select name="monde" class="input-small">
+        <option value="">Tous</option>
+        {% for m in monde_list %}
+        <option>{{ m.nom }}</option>
+        {% endfor %}
+        </select>
     Alliance :<input type="text" class="input-small" name="alliance" placeholder="n'importe">
     Nom :<input type="text" class="input-small" name="nom" placeholder="n'importe">
     <input type="submit" class="btn" value="Rechercher">

@@ -31,7 +31,14 @@ def joueur_index(request):
     try: joueurs = paginator.page(page)
     except PageNotAnInteger: joueurs = paginator.page(1)
     except EmptyPage: joueurs = paginator.page(paginator.num_pages)
-    return render_to_response('joueur/list.html',{"joueurs": joueurs, "nom": nom, "monde": monde, "alliance": alliance, "order": order})
+    return render_to_response('joueur/list.html',{
+	"joueurs": joueurs,
+	"nom": nom,
+	"monde": monde,
+	"alliance": alliance,
+	"order": order,
+	"monde_list": Monde.objects.all()
+    })
 #### ALLIANCES
 def alliance_detail(request,alliance_autoinc):
     return render_to_response('alliance/detail.html',{"alliance": Alliance.objects.get(pk=alliance_autoinc)})
@@ -49,7 +56,13 @@ def alliance_index(request):
     try: alliances = paginator.page(page)
     except PageNotAnInteger: alliances = paginator.page(1)
     except EmptyPage: alliances = paginator.page(paginator.num_pages)
-    return render_to_response('alliance/list.html',{"alliances": alliances, "nom": nom, "monde": monde, "order": order})
+    return render_to_response('alliance/list.html',{
+	"alliances": alliances,
+	"nom": nom,
+	"monde": monde,
+	"order": order,
+	"monde_list": Monde.objects.all()
+    })
 #### VILLES
 def ville_detail(request,ville_autoinc):
     return render_to_response('ville/detail.html',{"ville": Ville.objects.get(pk=ville_autoinc)})
@@ -79,7 +92,14 @@ def ville_index(request):
     try: villes = paginator.page(page)
     except PageNotAnInteger: villes = paginator.page(1)
     except EmptyPage: villes = paginator.page(paginator.num_pages)
-    return render_to_response('ville/list.html',{"villes": villes, "nom": nom, "monde": monde, "joueur": joueur, "alliance": alliance, "order": order})
+    return render_to_response('ville/list.html',{"villes": villes,
+	"nom": nom,
+	"monde": monde,
+	"joueur": joueur,
+	"alliance": alliance,
+	"order": order,
+	"monde_list": Monde.objects.all()
+    })
 ##############################
 #### CARTE
 def carte(request):
@@ -127,7 +147,7 @@ def carte_image(request):
     minimap=minimap.resize((301*zoom,301*zoom), Image.NEAREST)
     minimap_x=(height-CARTE_X*zoom)/2-(xpos*zoom)
     minimap_y=(height-CARTE_X*zoom)/2+(ypos*zoom)
-    
+
     im=Image.new('RGB',(height+200,height))
     im.paste(minimap,(minimap_x,minimap_y))
     im.paste(legende,(height,0))
