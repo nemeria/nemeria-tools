@@ -124,7 +124,7 @@ def carte_image(request):
     
     legende=Image.new('RGB',(200,height))
     lighten=Image.new('RGB',(CARTE_X,CARTE_Y),(255,255,255))
-    minimap=Image.open("nemeriatools/static/img/"+monde+".png")
+    minimap=Image.open("static/img/"+monde+".png")
     minimap=minimap.convert('RGB')
     minimap=Image.blend(minimap,lighten,0.6)
     minidraw=ImageDraw.Draw(minimap)
