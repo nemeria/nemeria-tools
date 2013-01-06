@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from nemeriatools.models import *
 from django.shortcuts import render_to_response
+import os
 def home(request):
     return render_to_response('home.html')
 #### JOUEURS
@@ -124,7 +125,8 @@ def carte_image(request):
     
     legende=Image.new('RGB',(200,height))
     lighten=Image.new('RGB',(CARTE_X,CARTE_Y),(255,255,255))
-    minimap=Image.open("static/img/"+monde+".png")
+    
+    minimap=Image.open(os.path.dirname(os.path.realpath(__file__))+"/static/img/"+monde+".png")
     minimap=minimap.convert('RGB')
     minimap=Image.blend(minimap,lighten,0.6)
     minidraw=ImageDraw.Draw(minimap)
